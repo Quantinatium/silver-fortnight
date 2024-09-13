@@ -1,0 +1,22 @@
+name: Generate Nox Build Matrix
+description: Generate a build matrix for a Noxfile
+inputs:
+  noxfile:
+    description: Path to the Noxfile to generate a matrix for.
+    default: "noxfile.py"
+  keywords:
+    description: Keyword list to apply to the sessions returned. Equivalent to the `-k` option.
+    default: ""
+outputs:
+  matrix:
+    description: The generated build matrix.
+branding:
+  icon: list
+  color: purple
+author: nint8835
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.noxfile }}
+    - ${{ inputs.keywords }}
